@@ -43,3 +43,5 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'carrierwave', '~> 0.10.0'
+gem 'rest-client', '~> 1.7.3'

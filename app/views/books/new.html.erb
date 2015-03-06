@@ -1,0 +1,7 @@
+<%= form_for @book do |f| %>
+
+  <%= f.text_field :name, placeholder:"Name" %>
+  <%= f.file_field :book %>
+  <%= f.submit "Submit" %>
+
+<% end %>
