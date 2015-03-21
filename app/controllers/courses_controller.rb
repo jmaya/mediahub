@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course.includes([:file_attachments]).all
   end
 
   # GET /courses/1
@@ -24,8 +24,10 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      params[:file_attachments][:file].each do |a|
-        @file_atachment = @course.file_attachments.create!(:file => a, :course_id => @course.id)
+      unless params[:file_attachments].nil?
+        params[:file_attachments][:file].each do |a|
+          @file_atachment = @course.file_attachments.create!(:file => a, :course_id => @course.id)
+        end
       end
       redirect_to @course, notice: 'Course was successfully created.'
     else
@@ -49,13 +51,13 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def course_params
-      params.require(:course).permit(:name, :company)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def course_params
+    params.require(:course).permit(:name, :company)
+  end
 end
