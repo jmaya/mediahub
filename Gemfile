@@ -25,6 +25,7 @@ gem "title"
 gem "uglifier"
 gem "unicorn"
 gem 'carrierwave'
+gem 'foreman'
 
 group :development do
   gem "spring"
@@ -40,6 +41,9 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.1.0"
+  gem 'guard-rspec'
+  gem 'guard-rails'
+  gem 'guard-bundler'
 end
 
 group :test do

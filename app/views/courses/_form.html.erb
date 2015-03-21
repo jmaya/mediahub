@@ -11,13 +11,6 @@
     </div>
   <% end %>
 
-  <%= f.fields_for :file_attachment do |p| %>
-    <div class="field">
-      <%= p.label :file%><br>
-      <%= p.file_field :file, :multiple => true, name: "file_attachments[file][]" %>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -26,6 +19,13 @@
     <%= f.label :company %><br>
     <%= f.text_field :company %>
   </div>
+
+  <%= f.fields_for :file_attachment do |p| %>
+    <div class="field">
+      <%= p.label :file%><br>
+      <%= p.file_field :file, :multiple => true, name: "file_attachments[file][]" %>
+    </div>
+  <% end %>
 
 
   <div class="actions">
