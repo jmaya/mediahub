@@ -48,4 +48,8 @@ class FileUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def extension_white_list
+    %w(mov MOV flv FLV mp4 MP4)
+  end
+
 end
