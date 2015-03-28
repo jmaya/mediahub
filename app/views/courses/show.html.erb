@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @course.company %>
+</p>
+
+<ul>
+  <% @course.file_attachments.each do |f| %>
+    <li><%=link_to base_name(f.file.url), f.file.url%></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

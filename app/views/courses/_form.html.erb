@@ -1,0 +1,34 @@
+<%= form_for(@course, :html =>  { :multipart => true }) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :company %><br>
+    <%= f.text_field :company %>
+  </div>
+
+  <%= f.fields_for :file_attachment do |p| %>
+    <div class="field">
+      <%= p.label :file%><br>
+      <%= p.file_field :file, :multiple => true, name: "file_attachments[file][]" %>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
