@@ -26,6 +26,7 @@ gem "uglifier"
 gem "unicorn"
 gem 'carrierwave'
 gem 'foreman'
+gem 'bitters'
 
 group :development do
   gem "spring"
