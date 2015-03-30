@@ -25,3 +25,4 @@ capybara-*.html
 /tmp/*
 /public/uploads/*
 .idea/
+.vagrant
