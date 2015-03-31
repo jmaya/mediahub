@@ -18,4 +18,13 @@ module ApplicationHelper
     end
     nil
   end
+
+  def active_chooser(params_in)
+    case params_in[:controller]
+    when 'courses'
+      'active'
+    end
+  end
+
+
 end
