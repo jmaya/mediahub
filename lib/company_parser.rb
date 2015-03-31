@@ -25,7 +25,7 @@ class CompanyParser
   private
   def parse
     COMPANIES.each do |c|
-      if name.downcase.match(/(#{c.downcase})/)
+      if name.downcase.match(/#{c.downcase}/)
           @match = c
       end
     end
