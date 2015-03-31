@@ -38,6 +38,11 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   def update
     if @course.update(course_params)
+      unless params[:file_attachments].nil?
+        params[:file_attachments][:file].each do |a|
+          @file_atachment = @course.file_attachments.create!(:file => a, :course_id => @course.id)
+        end
+      end
       redirect_to @course, notice: 'Course was successfully updated.'
     else
       render :edit

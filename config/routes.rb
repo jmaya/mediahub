@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :books
 
-  resources :courses
+  resources :courses do
+    resources :file_attachments, only: :destroy
+  end
 
 end

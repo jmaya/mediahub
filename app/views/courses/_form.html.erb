@@ -15,7 +15,7 @@
     <%= f.input :company %>
 
   <%= f.simple_fields_for :file_attachment do |p| %>
-    <%= p.input :file, as: :file, input_html: { name: "file_attachments[file][]" } %>
+    <%= p.input :file, as: :file, input_html: { name: "file_attachments[file][]", multiple: true } %>
   <% end %>
 
 

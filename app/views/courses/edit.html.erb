@@ -2,5 +2,14 @@
 
 <%= render 'form' %>
 
+<ul class="list-group">
+  <% @course.file_attachments.each do |f| %>
+    <li class="list-group-item">
+    <span class="glyphicon glyphicon-facetime-video"></span> <%= base_name(f.file.url) %> <%= link_to "Remove", course_file_attachment_path(@course,f), method: :delete, data: { confirm: 'Are you Sure?' }  %>
+    </li>
+
+  <% end %>
+</ul>
+
 <%= link_to 'Show', @course %> |
 <%= link_to 'Back', courses_path %>
