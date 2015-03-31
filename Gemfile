@@ -56,7 +56,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
 end
 
 group :staging, :production do
