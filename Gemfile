@@ -27,6 +27,7 @@ gem "unicorn"
 gem 'carrierwave'
 gem 'foreman'
 gem 'bitters'
+gem 'devise'
 
 group :development do
   gem "spring"
@@ -55,6 +56,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
+  gem 'cucumber-rails'
 end
 
 group :staging, :production do
