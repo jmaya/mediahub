@@ -45,13 +45,8 @@ GEM
     bcrypt (3.1.9)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bitters (0.10.1)
-      bourbon (>= 3.2)
-      sass (>= 3.2)
-      thor
-    bourbon (4.2.1)
-      sass (~> 3.4)
-      thor
+    bootstrap-sass (3.3.1.0)
+      sass (~> 3.2)
     builder (3.2.2)
     bundler-audit (0.3.1)
       bundler (~> 1.2)
@@ -111,6 +106,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.4)
     diff-lcs (1.2.5)
     dotenv (2.0.0)
     dotenv-rails (2.0.0)
@@ -199,9 +195,6 @@ GEM
     minitest (5.5.1)
     multi_json (1.11.0)
     multi_test (0.1.1)
-    neat (1.7.2)
-      bourbon (>= 4.0)
-      sass (>= 3.3)
     nenv (0.2.0)
     newrelic_rpm (3.11.0.283)
     nokogiri (1.6.6.2)
@@ -345,8 +338,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   awesome_print
-  bitters
-  bourbon (~> 4.2.0)
+  bootstrap-sass
   bundler-audit
   byebug
   capybara-webkit (>= 1.2.0)
@@ -356,6 +348,7 @@ DEPENDENCIES
   database_cleaner
   delayed_job_active_record
   devise
+  devise-bootstrap-views
   dotenv-rails
   email_validator
   factory_girl_rails
@@ -369,7 +362,6 @@ DEPENDENCIES
   i18n-tasks
   jquery-rails
   launchy
-  neat (~> 1.7.0)
   newrelic_rpm
   normalize-rails (~> 3.0.0)
   pg

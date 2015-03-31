@@ -1,12 +1,8 @@
-@charset "utf-8";
+/*
+ *= require_tree .
+ *= require_self
+ *= require devise_bootstrap_views
+*/
 
-@import "normalize-rails";
-@import "bourbon";
-@import "base/grid-settings";
-@import "neat";
-@import "base/base";
-@import "refills/flashes";
-
-#main {
-  @include outer-container;
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";

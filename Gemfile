@@ -3,7 +3,6 @@ source "https://rubygems.org"
 ruby "2.2.0"
 
 gem "airbrake"
-gem "bourbon", "~> 4.2.0"
 gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"
 gem "email_validator"
@@ -11,7 +10,6 @@ gem "flutie"
 gem "high_voltage"
 gem "i18n-tasks"
 gem "jquery-rails"
-gem "neat", "~> 1.7.0"
 gem "newrelic_rpm"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
@@ -26,8 +24,10 @@ gem "uglifier"
 gem "unicorn"
 gem 'carrierwave'
 gem 'foreman'
-gem 'bitters'
 gem 'devise'
+gem 'devise-bootstrap-views'
+
+gem 'bootstrap-sass'
 
 group :development do
   gem "spring"
