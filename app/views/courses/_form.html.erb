@@ -14,11 +14,8 @@
     <%= f.input :name %>
     <%= f.input :company %>
 
-  <%= f.fields_for :file_attachment do |p| %>
-    <div class="field">
-      <%= p.label :file%><br>
-      <%= p.file_field :file, :multiple => true, name: "file_attachments[file][]" %>
-    </div>
+  <%= f.simple_fields_for :file_attachment do |p| %>
+    <%= p.input :file, as: :file, input_html: { name: "file_attachments[file][]" } %>
   <% end %>
 
 
