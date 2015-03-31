@@ -1,6 +1,18 @@
 require 'find'
+require 'company_parser'
 
 namespace :courses do
+  desc "Match Company"
+  task :parse_company => :environment do
+    Course.all.each do |course|
+      company_parser = CompanyParser.new(course.name)
+      unless company_parser.name.nil?
+        puts "Updating company for #{course.name} to #{company_parser.company}"
+        course.update_attribute(:company,company_parser.company)
+      end
+    end
+  end
+
   desc "Import Directory of CBT's"
   task :import => :environment do
 

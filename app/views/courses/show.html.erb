@@ -1,18 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @course.name %> <small>by <%= @course.company %></small></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @course.company %>
-</p>
-
-<ul>
+<ul class="list-group">
   <% @course.file_attachments.each do |f| %>
-    <li><%=link_to base_name(f.file.url), f.file.url%></li>
+    <li class="list-group-item">
+    <%=link_to base_name(f.file.url), f.file.url%></li>
   <% end %>
 </ul>
 

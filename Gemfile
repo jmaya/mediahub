@@ -13,7 +13,7 @@ gem "jquery-rails"
 gem "newrelic_rpm"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
-gem "rack-timeout"
+# gem "rack-timeout"
 gem "rails", "4.2.0"
 gem "recipient_interceptor"
 gem "refills"
@@ -33,6 +33,10 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
+  #Pry
+  gem 'hirb'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :development, :test do
@@ -44,7 +48,6 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails", "~> 3.1.0"
   gem 'guard-rspec'
-  gem 'guard-rails'
   gem 'guard-bundler'
 end
 
@@ -56,7 +59,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
 end
 
 group :staging, :production do

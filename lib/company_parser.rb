@@ -1,22 +1,32 @@
 class CompanyParser
   attr_reader :name
 
-  COMPANIES = ["Pluralsight", "TeamTree"]
+  COMPANIES = [
+    "Pluralsight", 
+    "TeamTree", 
+    'Laracasts',
+    'InfiniteSkills',
+    'Lynda',
+    'Peachpit',
+    'Nuggets'
+  
+  ]
 
   def initialize(item_name)
     @name = item_name
+    @match = nil
   end
 
   def company
     parse
-    name
+    @match
   end
 
   private
   def parse
     COMPANIES.each do |c|
-      if name.match(/(#{c})/)
-          @name = $1
+      if name.downcase.match(/#{c.downcase}/)
+          @match = c
       end
     end
   end
