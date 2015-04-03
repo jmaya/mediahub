@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :file_attachments, only: :destroy
+    collection do
+      get :search
+    end
   end
 
 end

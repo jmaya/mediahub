@@ -56,6 +56,11 @@ class CoursesController < ApplicationController
     redirect_to courses_url, notice: 'Course was successfully destroyed.'
   end
 
+  def search
+    @courses = Course.includes([:file_attachments]).where("name like ?", "%#{params[:course][:query]}%")
+    render :index
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_course
