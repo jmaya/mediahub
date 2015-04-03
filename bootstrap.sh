@@ -9,6 +9,7 @@ function install {
 echo updating package information
 apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
+apt-get install -qy nginx
 
 install 'development tools' build-essential
 
@@ -52,17 +53,18 @@ update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 # Create rails db
 sudo -u vagrant createdb rails_development
 sudo -u vagrant createdb rails_test
-cd /vagrant && sudo -u vagrant bundle install && sudo -u vagrant rake db:setup
+export RAILS_ENV=production
+cd /vagrant && sudo -u vagrant bundle install && sudo -u vagrant rake db:setup && sudo -u vagrant rake assets:precompile
 
 
 # Copy vim files
-FILE=~/.vim
-SERVER=localhost
-PATH=~/.vim
+# FILE=~/.vim
+# SERVER=localhost
+# PATH=~/.vim
  
-OPTIONS=`vagrant ssh-config | awk -v ORS=' ' '{print "-o " $1 "=" $2}'`
+# OPTIONS=`vagrant ssh-config | awk -v ORS=' ' '{print "-o " $1 "=" $2}'`
  
-scp -r ${OPTIONS} $FILE vagrant@$SERVER:$PATH
+# scp -r ${OPTIONS} $FILE vagrant@$SERVER:$PATH
 
-ln -s ~/.vim/vimrc ~/.vimrc
+# ln -s ~/.vim/vimrc ~/.vimrc
 echo 'all set, rock on!'

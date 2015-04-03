@@ -26,6 +26,7 @@ gem 'carrierwave'
 gem 'foreman'
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem "dotenv-rails"
 
 gem 'bootstrap-sass'
 
@@ -43,7 +44,6 @@ group :development, :test do
   gem "awesome_print"
   gem "bundler-audit", require: false
   gem "byebug"
-  gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.1.0"

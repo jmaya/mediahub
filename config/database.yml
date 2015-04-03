@@ -10,5 +10,10 @@ test: &test
   <<: *default
   database: rails_test
 
+production:
+  <<: *default
+  database: rails_production
+
+
 cucumber:
   <<: *test
