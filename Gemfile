@@ -37,6 +37,7 @@ group :development do
   #Pry
   gem 'hirb'
   gem 'pry-byebug'
+  gem 'pry-rescue'
   gem 'pry-stack_explorer'
 end
 
