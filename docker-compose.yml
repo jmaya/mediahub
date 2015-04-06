@@ -2,13 +2,15 @@ db:
   image: postgres
   ports:
     - "5432"
+  volumes:
+    - ./data:/var/lib/postgresql/data
 app:
-  # image: mediahub_app
-  build: .
+  image: jmaya/mediahub_app
+  # build: .
   command: bundle exec rails s -p 3000 -b '0.0.0.0'
   volumes:
     - /mnt/MediaHub:/myapp/public/uploads
-    - /var/log/mediahub:/myapp/log
+    - ./log:/myapp/log
   ports:
     - "3000"
   links:
@@ -18,7 +20,7 @@ web:
   ports:
     - "8080:8080"
   volumes:
-    - ./conf/container/myapp.conf:/etc/nginx/conf.d/myapp.conf
+    - ./myapp.conf:/etc/nginx/conf.d/myapp.conf
   volumes_from:
     - app
   links:
