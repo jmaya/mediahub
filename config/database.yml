@@ -13,6 +13,9 @@ test: &test
 production:
   <<: *default
   database: rails_production
+  username: postgres
+  host: <%= ENV["DB_PORT_5432_TCP_ADDR"] %>
+  port: <%= ENV["DB_PORT_5432_TCP_PORT"] %>
 
 
 cucumber:
