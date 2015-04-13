@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.includes([:file_attachments]).all
+    @courses = Course.includes([:file_attachments]).page(params[:page])
   end
 
   # GET /courses/1

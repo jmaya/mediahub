@@ -27,6 +27,8 @@ gem 'foreman'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem "dotenv-rails"
+gem "kaminari"
+gem 'bootstrap-kaminari-views'
 
 gem 'bootstrap-sass'
 
