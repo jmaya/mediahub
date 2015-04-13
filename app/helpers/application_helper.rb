@@ -1,6 +1,6 @@
 module ApplicationHelper
   def base_name(full_path)
-    File.basename full_path
+    full_path.split("\/")[-1]
   end
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info"  }[flash_type.to_sym] || flash_type.to_s
