@@ -57,7 +57,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.includes([:file_attachments]).where("name like ?", "%#{params[:course][:query]}%")
+    @courses = Course.includes([:file_attachments]).where("name like ?", "%#{params[:course][:query]}%").page(params[:page])
     render :index
   end
 

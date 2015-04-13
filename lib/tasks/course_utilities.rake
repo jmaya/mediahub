@@ -13,6 +13,20 @@ namespace :courses do
     end
   end
 
+  desc "Update size"
+  task :update_size => :environment do
+    Course.all.each do |course|
+	course.file_attachments.each do |f|
+		next if f.file_size
+		if File.exist? f.file.path
+			size = File.size f.file.path
+			puts "Updating size for #{f.path} with  #{size} bytes"
+			f.updatte_attribute(:file_size, size)
+		end
+        end
+      end
+    end
+
   desc "Import Directory of CBT's"
   task :import => :environment do
 
