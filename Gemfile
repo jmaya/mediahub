@@ -29,8 +29,8 @@ gem 'devise-bootstrap-views'
 gem "dotenv-rails"
 gem "kaminari"
 gem 'bootstrap-kaminari-views'
-
 gem 'bootstrap-sass'
+gem 'cancancan'
 
 group :development do
   gem "spring"
