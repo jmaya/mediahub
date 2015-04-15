@@ -5,8 +5,11 @@
 <ul class="list-group">
   <% @course.file_attachments.each do |f| %>
     <li class="list-group-item">
-    <%=link_to base_name(f.file.url), f.file.url%></li>
-  <% end %>
+    <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %> 
+  <span class="badge"><%= show_file_size(f.file_size) %></span>
+
+  </li>
+<% end %>
 </ul>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

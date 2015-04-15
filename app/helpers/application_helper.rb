@@ -1,7 +1,14 @@
 module ApplicationHelper
+
+  def show_file_size(file_size)
+    return number_to_human_size(0) unless file_size
+    number_to_human_size file_size
+  end
+
   def base_name(full_path)
     full_path.split("\/")[-1]
   end
+
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info"  }[flash_type.to_sym] || flash_type.to_s
   end
