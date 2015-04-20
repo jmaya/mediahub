@@ -31,6 +31,7 @@ gem "kaminari"
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass'
 gem 'cancancan'
+gem 'acts-as-taggable-on', '~> 3.5.0'
 
 group :development do
   gem "spring"

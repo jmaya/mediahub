@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:index, :search]
 
   # GET /courses
   def index
@@ -57,11 +58,20 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.includes([:file_attachments]).where("name like ?", "%#{params[:course][:query]}%").page(params[:page])
+    if params[:tag]
+      @courses = Course.tagged_with(params[:tag]).page
+    else
+      @courses = Course.includes([:file_attachments]).where("name ilike ?", "%#{params[:course][:query]}%").page(params[:page])
+    end
     render :index
   end
 
   private
+
+  def set_tags
+    @tags = ActsAsTaggableOn::Tag.most_used(10)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_course
     @course = Course.find(params[:id])
