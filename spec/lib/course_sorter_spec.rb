@@ -6,7 +6,7 @@ describe CourseSorter do
   #TODO: Finish these specs
   context "with multiple items with dots..." do
     let(:list) {
-      list = %w[
+      %w[
       2.1_The_BDD_and_TDD_Cycle.mp4
       2.10_Review.mp4
       2.11_Assignment.mp4

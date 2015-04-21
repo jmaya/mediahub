@@ -11,6 +11,7 @@ class FileAttachment < ActiveRecord::Base
   private
 
   def update_sha_1_hash
+    return if file.path.nil?
     self.sha_1_hash = Digest::SHA1.file(file.path).hexdigest
   end
 
