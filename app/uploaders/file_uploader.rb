@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class FileUploader < CarrierWave::Uploader::Base
+  SUPPORTED_FILETYPES = %w(mov flv mp4 wmv)
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -49,7 +50,7 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   def extension_white_list
-    %w(mov MOV flv FLV mp4 MP4)
+    SUPPORTED_FILETYPES.inject([]) {|arr,obj| arr << obj << obj.upcase }
   end
 
 end

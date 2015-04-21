@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.includes([:file_attachments]).page(params[:page])
+    @courses = Course.page(params[:page])
     @tags = Course.tag_counts_on(:tags)
   end
 
