@@ -6,7 +6,7 @@ class FileAttachment < ActiveRecord::Base
   validates_uniqueness_of :sha_1_hash
 
   mount_uploader :file, FileUploader
-  belongs_to :course
+  belongs_to :course, counter_cache: true
 
   private
 
