@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActsAsTaggableOn::TagsHelper
 
   def show_file_size(file_size)
     return number_to_human_size(0) unless file_size

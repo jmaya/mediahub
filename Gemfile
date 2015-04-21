@@ -10,6 +10,7 @@ gem "flutie"
 gem "high_voltage"
 gem "i18n-tasks"
 gem "jquery-rails"
+gem "jbuilder"
 gem "newrelic_rpm"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
@@ -32,6 +33,7 @@ gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'acts-as-taggable-on', '~> 3.5.0'
+gem 'rails_admin'
 
 group :development do
   gem "spring"
@@ -41,6 +43,7 @@ group :development do
   gem 'hirb'
   gem 'pry-byebug'
   gem 'pry-rescue'
+  gem 'pry-rails'
   gem 'pry-stack_explorer'
 end
 

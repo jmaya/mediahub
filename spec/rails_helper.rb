@@ -6,6 +6,7 @@ require "rspec/rails"
 require "shoulda/matchers"
 require 'devise'
 
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
 
 module Features

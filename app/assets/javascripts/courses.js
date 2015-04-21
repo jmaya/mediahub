@@ -1,29 +1,22 @@
 (function() {
-  var citynames = new Bloodhound({
+  var tags= new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       prefetch: {
-        url: 'assets/citynames.json',
+        url: '/api/v1/tags',
       filter: function(list) {
-        return $.map(list, function(cityname) {
-          return { name: cityname  }; 
-        });
-
+        return $.map(list, function(tag) { return { name: tag.name}; });
       }
-
       }
 
   });
-  citynames.initialize();
+  tags.initialize();
 
-  $('input').tagsinput({
-    typeaheadjs: {
-      name: 'citynames',
+  $('#course_tag_list').typeahead(null, {
+    name: 'tags',
     displayKey: 'name',
     valueKey: 'name',
-    source: citynames.ttAdapter()
-
-    }
+    source: tags.ttAdapter()
   });
 
 })()

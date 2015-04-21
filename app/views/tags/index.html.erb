@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <% @tags.each do |tag| %>
+    <li class="list-group-item"><%= tag.name %> <%= link_to "Delete", tag_path(tag), method: :delete, confirm: "Are you sure?" %> 
+  <span class="badge"><%= tag.taggings_count%></span>
+  </li>
+<% end %>
+</ul>

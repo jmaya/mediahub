@@ -4,11 +4,9 @@
 
 
 <h3>Tags</h3>
-<ul>
-  <% @tags.each do |t| %>
-    <li><%= link_to t, search_courses_path(tag:t.name) %></li>
-  <% end %>
-</ul>
+<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <%= link_to tag, search_courses_path(tag:tag.name), :class => css_class %>
+<% end %>
 
 <table class="table">
   <thead>

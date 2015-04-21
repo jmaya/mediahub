@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   # GET /courses
   def index
     @courses = Course.includes([:file_attachments]).page(params[:page])
+    @tags = Course.tag_counts_on(:tags)
   end
 
   # GET /courses/1
@@ -79,6 +80,6 @@ class CoursesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def course_params
-    params.require(:course).permit(:name, :company)
+    params.require(:course).permit(:name, :company, :tag_list)
   end
 end

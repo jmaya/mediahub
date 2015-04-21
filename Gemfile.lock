@@ -134,6 +134,8 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.8)
     flutie (2.0.0)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     foreman (0.78.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
@@ -163,6 +165,8 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    haml (4.0.6)
+      tilt
     high_voltage (2.2.1)
     highline (1.7.1)
     hike (1.2.3)
@@ -179,10 +183,15 @@ GEM
       term-ansicolor
       terminal-table
     interception (0.5)
+    jbuilder (2.2.6)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.3)
+      railties (>= 3.2.16)
     json (1.8.2)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -206,6 +215,7 @@ GEM
     multi_json (1.11.0)
     multi_test (0.1.1)
     nenv (0.2.0)
+    nested_form (0.3.2)
     newrelic_rpm (3.11.0.283)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -231,6 +241,9 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     rack (1.6.0)
+    rack-pjax (0.8.0)
+      nokogiri (~> 1.5)
+      rack (~> 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -252,6 +265,20 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails_admin (0.6.7)
+      builder (~> 3.1)
+      coffee-rails (~> 4.0)
+      font-awesome-rails (>= 3.0, < 5)
+      haml (~> 4.0)
+      jquery-rails (>= 3.0, < 5)
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.7)
+      rails (~> 4.0)
+      remotipart (~> 1.0)
+      safe_yaml (~> 1.0)
+      sass-rails (>= 4.0, < 6)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -265,6 +292,7 @@ GEM
     recipient_interceptor (0.1.2)
       mail
     refills (0.1.0)
+    remotipart (1.2.1)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
     rspec (3.1.0)
@@ -382,6 +410,7 @@ DEPENDENCIES
   high_voltage
   hirb
   i18n-tasks
+  jbuilder
   jquery-rails
   kaminari
   launchy
@@ -393,6 +422,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   rails (= 4.2.0)
+  rails_admin
   recipient_interceptor
   refills
   rspec-rails (~> 3.1.0)
