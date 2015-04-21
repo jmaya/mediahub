@@ -24,7 +24,7 @@
     <tr>
       <td><%= course.name %></td>
       <td><%= course.company %></td>
-      <td><%= course.file_attachments.count %></td>
+      <td><%= course.file_attachments_count %></td>
       <td><%= link_to 'Show', course %></td>
       <td>
         <% if can? :edit, Course %>
