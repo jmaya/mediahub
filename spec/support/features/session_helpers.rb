@@ -7,5 +7,13 @@ module Features
 
       click_on "Log in"
     end
+
+    def tempfile
+      tempfile = Tempfile.new(['temp', ".mp4"])
+      tempfile.write(Kernel.rand)
+      tempfile.flush
+      tempfile.rewind
+      tempfile
+    end
   end
 end

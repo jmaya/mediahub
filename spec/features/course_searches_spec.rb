@@ -4,13 +4,9 @@ require 'tempfile'
 feature "CourseSearches", :type => :feature do
   scenario "User searches from the Course page" do
     sign_in
-    
+
     2.times do |t|
       course = Course.new(name:"Test#{t}")
-      tempfile = Tempfile.new(['temp', ".mp4"])
-      tempfile.write(Kernel.rand)
-      tempfile.flush
-      tempfile.rewind
       course.file_attachments.build(file:tempfile)
       course.save!
     end
