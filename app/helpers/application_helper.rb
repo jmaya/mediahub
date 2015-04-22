@@ -34,5 +34,11 @@ module ApplicationHelper
     end
   end
 
-
+  def video_content_type_for(content_type)
+    return "" if content_type.nil?
+    return "video/mp4" if content_type.end_with?("mp4")
+    return "video/ogg" if content_type.end_with?("ogg")
+    return "video/webm" if content_type.end_with?("weebm")
+    content_type
+  end
 end
