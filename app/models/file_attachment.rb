@@ -1,8 +1,23 @@
+# == Schema Information
+#
+# Table name: file_attachments
+#
+#  id         :integer          not null, primary key
+#  course_id  :integer
+#  file       :string
+#  created_at :datetime
+#  updated_at :datetime
+#  sha_1_hash :string
+#  file_size  :integer
+#
+
 require 'digest/sha1'
 
 class FileAttachment < ActiveRecord::Base
 
   before_validation :update_sha_1_hash
+  before_save :update_file_attachment_attributes
+
   validates_uniqueness_of :sha_1_hash
 
   mount_uploader :file, FileUploader
@@ -13,6 +28,13 @@ class FileAttachment < ActiveRecord::Base
   def update_sha_1_hash
     return if file.path.nil?
     self.sha_1_hash = Digest::SHA1.file(file.path).hexdigest
+  end
+
+  def update_file_attachment_attributes
+    if file.present? && file_changed?
+      self.content_type = self.file.content_type
+      self.file_size = self.file.size
+    end
   end
 
 end

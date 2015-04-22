@@ -45,6 +45,7 @@ group :development do
   gem 'pry-rescue'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+  gem 'annotate'
 end
 
 group :development, :test do

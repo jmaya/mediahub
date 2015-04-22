@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: file_attachments
+#
+#  id         :integer          not null, primary key
+#  course_id  :integer
+#  file       :string
+#  created_at :datetime
+#  updated_at :datetime
+#  sha_1_hash :string
+#  file_size  :integer
+#
+
 require 'rails_helper'
 
 describe FileAttachment do

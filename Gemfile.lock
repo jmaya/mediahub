@@ -42,6 +42,9 @@ GEM
     airbrake (4.1.0)
       builder
       multi_json
+    annotate (2.6.8)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
     arel (6.0.0)
     awesome_print (1.6.1)
     bcrypt (3.1.9)
@@ -384,6 +387,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 3.5.0)
   airbrake
+  annotate
   awesome_print
   bootstrap-kaminari-views
   bootstrap-sass
