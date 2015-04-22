@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require typeahead
+//= require video
 //= require_tree .
 

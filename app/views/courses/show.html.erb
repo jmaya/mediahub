@@ -2,15 +2,25 @@
   <h1><%= @course.name %> <small>by <%= @course.company %></small></h1>
 </div>
 
-<ul class="list-group">
   <% @course.file_attachments.each do |f| %>
-    <li class="list-group-item">
-    <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %> 
-  <span class="badge"><%= show_file_size(f.file_size) %></span>
+    <%# <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %1> %> 
+  <%# <span class="badge"><%= show_file_size(f.file_size) %1></span> %>
+  <%# </li> %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %><span class="badge pull-right"><%= show_file_size(f.file_size) %></span></div>
+  
+    <div class="panel-body">
+  <video id="example_video_1" class="video-js vjs-default-skin"
+    controls preload="auto" width="640" height="264"
+    data-setup='{"example_option":true}'>
+    <source src="<%= f.file.url %>" type='<%= f.content_type %>' />
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+  </video>
 
-  </li>
+    </div>
+  </div>
 <% end %>
-</ul>
+<%# </ul> %>
 
 <% if can? :edit, Course %>
   <%= link_to 'Edit', edit_course_path(@course) %> |
