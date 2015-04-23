@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150423132203) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",        null: false
     t.integer  "favorited_id"
     t.string   "favorited_type", null: false
     t.datetime "created_at",     null: false

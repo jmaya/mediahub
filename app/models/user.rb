@@ -25,4 +25,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :favorites
   has_many :favorite_courses,through: :favorites, source: :favorited, source_type: 'Course'
+
+  has_many :favorite_file_attachments,through: :favorites, source: :favorited, source_type: 'FileAttachment'
 end

@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
-    resources :file_attachments, only: :destroy
+    resources :favorite_courses, only: [:create, :destroy]
+    resources :file_attachments, only: :destroy do
+      resource :favorite_file_attachments, only: [:create, :destroy]
+    end
     collection do
       get :search
     end
