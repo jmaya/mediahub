@@ -1,0 +1,15 @@
+<h1>Profile for <%= @user.email %></h1>
+
+<h3>Courses</h3>
+<ul>
+  <% @user.favorite_courses.each do |course| %>
+    <li> <%= link_to course.name, course%> </li>
+<% end %>
+</ul>
+
+<h3>Videos</h3>
+<ul>
+  <% @user.favorite_file_attachments.each do |fa| %>
+    <li> <%= link_to "#{base_name(fa.file.path)} on course #{fa.course.name}", course_path(fa.course) %> </li>
+<% end %>
+</ul>
