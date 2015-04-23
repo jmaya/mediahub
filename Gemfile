@@ -14,6 +14,7 @@ gem "jbuilder"
 gem "newrelic_rpm"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
+gem "puma"
 # gem "rack-timeout"
 gem "rails", "4.2.0"
 gem "recipient_interceptor"
@@ -22,7 +23,6 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
-gem "unicorn"
 gem 'carrierwave'
 gem 'foreman'
 gem 'devise'
