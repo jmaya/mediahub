@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
     if @course.save
       unless params[:file_attachments].nil?
         params[:file_attachments][:file].each do |a|
-          @file_atachment = @course.file_attachments.create!(:file => a, :course_id => @course.id)
+          @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
         end
       end
       redirect_to @course, notice: 'Course was successfully created.'
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       unless params[:file_attachments].nil?
         params[:file_attachments][:file].each do |a|
-          @file_atachment = @course.file_attachments.create!(:file => a, :course_id => @course.id)
+          @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
         end
       end
       redirect_to @course, notice: 'Course was successfully updated.'
