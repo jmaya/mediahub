@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @course_sorter = CourseSorter.new(@course)
   end
 
   # GET /courses/new
