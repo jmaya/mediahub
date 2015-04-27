@@ -5,24 +5,25 @@ require 'course_sorter'
 describe CourseSorter do
   #TODO: Finish these specs
   context "with multiple items with dots..." do
-    let(:list) {
-      %w[
-      2.1_The_BDD_and_TDD_Cycle.mp4
-      2.10_Review.mp4
-      2.11_Assignment.mp4
-      2.2_The_First_Cucumber_Feature.mp4].collect do |n|
-        double(name:n)
-      end
-    }
-    let(:cs) { CourseSorter.new(list) }
+    let(:course) { double("Course") }
+    let(:cs) { CourseSorter.new(course) }
 
     it 'should start with a list of courses' do
-      expect(cs.list).to eql(list)
+      expect(cs.course).to eql(course)
     end
 
-    xit 'should sort the list with dots...' do
-      expect(cs.sort.first.name).to eql("2.1_The_BDD_and_TDD_Cycle.mp4")
+    context "sorts multiple attachments that have numbers in the start of name" do
+      it 'sorts by the first' do
+        fas = [
+          double("FileAttachment", file:'/sadfasfsad/002.Getting-Started.mp3'),
+          double("FileAttachment", file:'/sadfasfsad/001.Getting-Started.mp3')
+        ]
+        allow(course).to receive(:file_attachments).and_return(fas)
+        expect(cs.sort[0]).to eql fas.last
+
+      end
     end
+
 
   end
 
