@@ -1,9 +1,12 @@
-FROM jmaya/rails_base
-# FROM ruby:2.2.2
-# RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs && mkdir /myapp && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN rm -rf /myapp
-WORKDIR /myapp
+# FROM jmaya/rails_base
+FROM ruby:2.2.2
+# RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs qt5-default libqt5webkit5-dev && mkdir /myapp && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs && mkdir /myapp && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV RAILS_ENV production
+WORKDIR /tmp
 ADD . /myapp
-RUN bundle install --without development test
-RUN RAILS_ENV=production bundle exec rake assets:precompile
+ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
+RUN /bin/bash -l -c "/usr/local/bundle/bin/bundle install --without development test"
+WORKDIR /myapp
+RUN bundle exec rake assets:precompile

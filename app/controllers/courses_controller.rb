@@ -1,7 +1,15 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!
+
+  before_action :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :set_tags, only: [:index, :search]
+
+  check_authorization
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render text: "You are not authorized"
+  end 
 
   # GET /courses
   def index

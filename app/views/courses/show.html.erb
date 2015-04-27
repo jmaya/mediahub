@@ -2,6 +2,7 @@
   <h1><%= @course.name %> <small>by <%= @course.company %></small></h1>
 </div>
 
+<% if can? :show, @course %>
 <div id="favorite_course">
 
   <%- unless current_user.favorite_courses.exists?(id: @course.id) -%> 
@@ -13,7 +14,7 @@
 
 
 
-<% @course.file_attachments.each do |f| %>
+<% @course_sorter.sort.each do |f| %>
   <%# <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %1> %> 
   <%# <span class="badge"><%= show_file_size(f.file_size) %1></span> %>
   <%# </li> %>
@@ -44,3 +45,4 @@
   <%= link_to 'Edit', edit_course_path(@course) %> |
 <% end %>
 <%= link_to 'Back', courses_path %>
+<% end %>
