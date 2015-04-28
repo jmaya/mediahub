@@ -38,7 +38,9 @@ class CoursesController < ApplicationController
     if @course.save
       unless params[:file_attachments].nil?
         params[:file_attachments][:file].each do |a|
-          @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
+          # @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
+          prepare_job a,@course
+          
         end
       end
       redirect_to @course, notice: 'Course was successfully created.'
@@ -52,7 +54,8 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       unless params[:file_attachments].nil?
         params[:file_attachments][:file].each do |a|
-          @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
+          # @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
+          prepare_job a,@course
         end
       end
       redirect_to @course, notice: 'Course was successfully updated.'
@@ -77,6 +80,21 @@ class CoursesController < ApplicationController
   end
 
   private
+
+
+  def prepare_job temp_file,course
+    temp_folder = File.expand_path(Rails.root.to_s) + "/tmp"
+    filename = File.basename(temp_file.tempfile.path)
+    full_path = File.join(temp_folder,filename)
+    #Save the file to a temp path
+    File.open(full_path, 'wb') do |out|
+      out.write temp_file.tempfile.read
+    end
+    data = {}
+    data["original_filename"] = temp_file.original_filename
+    data["content_type"] = temp_file.content_type
+    CourseMoverJob.perform_later(course.id,full_path,data)
+  end
 
   def set_tags
     @tags = ActsAsTaggableOn::Tag.most_used(10)
