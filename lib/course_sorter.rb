@@ -7,7 +7,7 @@ class CourseSorter
 
   def sort
     course.file_attachments.to_a.sort_by do |file_attachment|
-      file_attachment.file_basename.scan(/\d+/).join.to_i unless file_attachment.file_basename.nil?
+      file_attachment.file_basename.scan(/\d+/).first.to_i unless file_attachment.file_basename.nil?
     end
   end
 end
