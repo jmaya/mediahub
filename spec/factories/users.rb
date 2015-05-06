@@ -16,6 +16,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  admin                  :boolean          default(FALSE)
+#  enabled                :boolean          default(FALSE)
 #
 
 FactoryGirl.define do

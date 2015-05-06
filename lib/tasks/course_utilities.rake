@@ -26,6 +26,14 @@ namespace :courses do
       end
     end
   end
+  desc "Update size"
+  task :update_size => :environment do
+    Course.all.each do |course|
+      course.file_attachments.each do |f|
+        f.save if f.file_basename.nil?
+      end
+    end
+  end
 
   desc "Import Directory of CBT's"
   task :import => :environment do

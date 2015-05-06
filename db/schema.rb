@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428015440) do
+ActiveRecord::Schema.define(version: 20150506173836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150428015440) do
     t.string   "sha_1_hash"
     t.integer  "file_size"
     t.string   "content_type"
+    t.string   "file_basename"
   end
 
   create_table "taggings", force: :cascade do |t|
