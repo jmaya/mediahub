@@ -4,9 +4,9 @@ FROM ruby:2.2.2
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs && mkdir /myapp && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV RAILS_ENV production
 WORKDIR /tmp
-ADD . /myapp
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN /bin/bash -l -c "/usr/local/bundle/bin/bundle install --without development test"
+ADD . /myapp
 WORKDIR /myapp
 RUN bundle exec rake assets:precompile

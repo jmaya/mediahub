@@ -13,18 +13,15 @@ describe CourseSorter do
     end
 
     context "sorts multiple attachments that have numbers in the start of name" do
-      xit 'sorts by the first' do
+      it 'sorts by the first' do
         fas = [
-          double("FileAttachment", file:'/sadfasfsad/002.Getting-Started.mp3'),
-          double("FileAttachment", file:'/sadfasfsad/001.Getting-Started.mp3')
+          double("FileAttachment", file_basename:'002.Getting-Started.mp3'),
+          double("FileAttachment", file_basename:'001.Getting-Started.mp3')
         ]
         allow(course).to receive(:file_attachments).and_return(fas)
         expect(cs.sort[0]).to eql fas.last
-
       end
     end
-
-
   end
 
 end
