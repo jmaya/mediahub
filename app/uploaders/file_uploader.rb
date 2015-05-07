@@ -49,6 +49,14 @@ class FileUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def move_to_cache
+    true
+  end
+
+  def move_to_store
+    true
+  end
+
   def extension_white_list
     SUPPORTED_FILETYPES.inject([]) {|arr,obj| arr << obj << obj.upcase }
   end
