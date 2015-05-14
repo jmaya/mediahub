@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'tempfile'
 
 class CourseMoverJob < ActiveJob::Base
@@ -5,22 +7,12 @@ class CourseMoverJob < ActiveJob::Base
 
   def perform(course_id, full_path, data)
     course = Course.find course_id
-    tempfile = Tempfile.new(File.basename(full_path))
-    File.new(full_path, 'rb') do |fh|
-      tempfile.write(fh.read)
+    new_name = File.join(File.dirname(full_path), data["original_filename"])
+    File.rename full_path, new_name
+    fa = FileAttachment.new(course: course)
+    File.open(new_name) do |f|
+      fa.file = f
     end
-    upload = ActionDispatch::Http::UploadedFile.new({
-                                                        :filename => data["original_filename"],
-                                                        :content_type => data["content_type"],
-                                                        :tempfile => tempfile
-                                                    })
-    fa = FileAttachment.new()
-    fa.file = upload
-    fa.course = course
-    if fa.save!
-      File.unlink(full_path)
-      upload = nil
-      fa.nil
-    end
+    fa.save!
   end
 end
