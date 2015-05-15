@@ -8,7 +8,14 @@ class CompanyParser
     'InfiniteSkills',
     'Lynda',
     'Peachpit',
-    'Nuggets'
+    'Nuggets',
+    'Tutsplus',
+    'Udemy',
+    'Learnkey',
+    'LinuxCBT',
+    'Video2Brain',
+    'AppDev',
+    'VTC'
   
   ]
 
