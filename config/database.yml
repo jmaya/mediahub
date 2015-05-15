@@ -16,6 +16,7 @@ production:
   username: postgres
   host: <%= ENV["DB_PORT_5432_TCP_ADDR"] %>
   port: <%= ENV["DB_PORT_5432_TCP_PORT"] %>
+  pool: <%= ENV['DB_POOL'] %>
 
 
 cucumber:

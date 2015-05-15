@@ -74,7 +74,7 @@ class CoursesController < ApplicationController
     if params[:tag]
       @courses = Course.tagged_with(params[:tag]).page
     else
-      @courses = Course.includes([:file_attachments]).where("name ilike ?", "%#{params[:course][:query]}%").page(params[:page])
+      @courses = Course.includes([:file_attachments]).where("name ilike ?", "%#{params[:course][:query]}%").order(created_at: :desc).page(params[:page])
     end
     render :index
   end
