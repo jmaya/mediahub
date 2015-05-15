@@ -21,7 +21,7 @@ class FileAttachment < ActiveRecord::Base
 
   before_save :update_file_attachment_attributes
 
-#  validates_uniqueness_of :sha_1_hash
+ validates_uniqueness_of :sha_1_hash
 
   mount_uploader :file, FileUploader
   belongs_to :course, counter_cache: true
