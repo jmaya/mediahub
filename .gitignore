@@ -26,3 +26,4 @@ capybara-*.html
 /public/uploads/*
 .idea/
 .vagrant
+spec/fixtures/test.mp4
