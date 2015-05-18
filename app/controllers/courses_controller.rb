@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.page(params[:page])
+    @courses = Course.order("updated_at DESC").page(params[:page])
     @tags = Course.tag_counts_on(:tags)
   end
 
