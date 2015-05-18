@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin?  } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root 'courses#index'
 
   resources :books
@@ -11,6 +16,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tags, only:[:index]
+      resources :file_attachments do
+        collection do
+          get :exists
+        end
+      end
     end
   end
 

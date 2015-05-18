@@ -35,6 +35,8 @@ gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'rails_admin'
+gem 'sinatra', :require => nil
+
 
 group :development do
   gem "spring"
