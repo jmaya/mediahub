@@ -36,6 +36,7 @@ gem 'cancancan'
 gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'rails_admin'
 gem 'sinatra', :require => nil
+gem 'rest-client'
 
 
 group :development do

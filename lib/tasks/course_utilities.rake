@@ -1,5 +1,7 @@
 require 'find'
 require 'company_parser'
+require 'digest/sha1'
+require 'rest-client'
 
 namespace :courses do
   desc "Match Company"
@@ -53,5 +55,35 @@ namespace :courses do
     end
 
   end
-end
 
+  desc "Remote import of Courses COURSE_PATH COURSE_ID URL"
+  task :remote_import do
+    # Example 
+    # bundle exec rake courses:remote_import COURSE_PATH="/Users/jmaya/Downloads/CBT/Advanced\ Social\ Features\ in\ Ruby\
+    #  on\ Rails\ \[Sality]/2\ -\ Uploading\ and\ Resizing\ Images" COURSE_ID=37 URL=http://localhost:3000
+    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
+    course_path = ENV['COURSE_PATH']
+    course_id = ENV['COURSE_ID']
+    url = ENV['URL']
+
+    Dir.glob("#{course_path}/*").collect do |f|
+      exists = false
+      if valid_formats.include?(File.extname(f))
+        sha1_to_verify = Digest::SHA256.file(f).hexdigest
+        begin
+          RestClient.get("#{url}/api/v1/file_attachments/exists.json?hash=#{sha1_to_verify}")
+        rescue RestClient::ResourceNotFound
+          puts "#{sha1_to_verify} #{f} exists"
+          exists = true
+        end
+        if exists
+          puts "Uploading #{f}"
+          RestClient.post "#{url}/api/v1/file_attachments", file_attachment: { 
+            course_id: course_id,
+            file: File.new(f, 'rb')
+          } 
+        end
+      end
+    end
+  end
+end
