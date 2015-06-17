@@ -7,26 +7,24 @@
 <% if can? :show, @course %>
 <div id="favorite_course">
 
-  <%- unless current_user.favorite_courses.exists?(id: @course.id) -%> 
+  <%- unless current_user.favorite_courses.exists?(id: @course.id) -%>
     <%= link_to 'Add to favorites', course_favorite_courses_path(course_id: @course), method: :post %>
-  <%- else -%> 
-    <%= link_to 'Remove from favorites', course_favorite_course_path(@course,1), method: :delete %> 
+  <%- else -%>
+    <%= link_to 'Remove from favorites', course_favorite_course_path(@course,1), method: :delete %>
     <%- end -%>
 </div>
 
-
-
 <% @course_sorter.sort.each do |f| %>
-  <%# <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %1> %> 
+  <%# <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %1> %>
   <%# <span class="badge"><%= show_file_size(f.file_size) %1></span> %>
   <%# </li> %>
   <div class="panel panel-default">
     <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %>
-    
-  <%- unless current_user.favorite_file_attachments.exists?(id: f.id) -%> 
+
+  <%- unless current_user.favorite_file_attachments.exists?(id: f.id) -%>
     <%= link_to 'Add to favorites', course_file_attachment_favorite_file_attachments_path(@course,f), method: :post %>
-  <%- else -%> 
-    <%= link_to 'Remove from favorites', course_file_attachment_favorite_file_attachments_path(@course.id, f.id), method: :delete %> 
+  <%- else -%>
+    <%= link_to 'Remove from favorites', course_file_attachment_favorite_file_attachments_path(@course.id, f.id), method: :delete %>
     <%- end -%>
     <span class="badge pull-right"><%= show_file_size(f.file_size) %></span></div>
 

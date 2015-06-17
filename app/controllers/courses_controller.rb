@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 
   rescue_from CanCan::AccessDenied do |exception|
     render text: "You are not authorized"
-  end 
+  end
 
   # GET /courses
   def index
@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
         params[:file_attachments][:file].each do |a|
           # @file_atachment = @course.file_attachments.create(:file => a, :course_id => @course.id)
           prepare_job a,@course
-          
+
         end
       end
       redirect_to @course, notice: 'Course was successfully created.'

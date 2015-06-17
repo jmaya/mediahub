@@ -67,18 +67,19 @@ namespace :courses do
     url = ENV['URL']
 
     Dir.glob("#{course_path}/*").collect do |f|
-      exists = false
       if valid_formats.include?(File.extname(f))
-        sha1_to_verify = Digest::SHA256.file(f).hexdigest
+        sha1_to_verify = Digest::SHA1.file(f).hexdigest
         begin
           RestClient.get("#{url}/api/v1/file_attachments/exists.json?hash=#{sha1_to_verify}")
         rescue RestClient::ResourceNotFound
-          puts "#{sha1_to_verify} #{f} exists"
-          exists = true
-        end
-        if exists
+          puts "#{sha1_to_verify} #{f} noes not exists"
           puts "Uploading #{f}"
-          RestClient.post "#{url}/api/v1/file_attachments", file_attachment: { 
+          resource = RestClient::Resource.new(
+            "#{url}/api/v1/file_attachments",
+            timeout: 100000,
+            open_timeout:100000 
+          )
+          resource.post  file_attachment: { 
             course_id: course_id,
             file: File.new(f, 'rb')
           } 
