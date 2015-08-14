@@ -15,7 +15,7 @@
 
 require 'rails_helper'
 
-describe FileAttachment do
+xdescribe FileAttachment do
 
   subject { FactoryGirl.build(:file_attachment) }
 
