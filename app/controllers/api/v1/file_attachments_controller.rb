@@ -23,6 +23,13 @@ module Api
         end
       end
 
+      def sort
+        params[:file_attachment].each_with_index do |file_attachment_id, index|
+          FileAttachment.find(file_attachment_id).insert_at(index)
+        end
+        render json: { status: 'Ok'}
+      end
+
       private
 
       def file_attachment_params

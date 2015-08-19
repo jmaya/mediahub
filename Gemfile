@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.2.2"
 
 gem "airbrake"
+gem 'jquery-ui-rails'
 gem "coffee-rails", "~> 4.1.0"
 gem "email_validator"
 gem "flutie"
@@ -37,6 +38,7 @@ gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'rails_admin'
 gem 'sinatra', :require => nil
 gem 'rest-client'
+gem 'acts_as_list', '~> 0.7.2'
 
 
 group :development do

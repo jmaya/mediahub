@@ -14,7 +14,7 @@
     <%- end -%>
 </div>
 
-<% @course_sorter.sort.each do |f| %>
+<% @course.file_attachments.order(:position).each do |f| %>
   <%# <span class="glyphicon glyphicon-facetime-video"></span> <%= link_to base_name(f.file.url), f.file.url %1> %>
   <%# <span class="badge"><%= show_file_size(f.file_size) %1></span> %>
   <%# </li> %>

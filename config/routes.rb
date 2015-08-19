@@ -20,11 +20,11 @@ Rails.application.routes.draw do
       resources :file_attachments do
         collection do
           get :exists
+          post :sort
         end
       end
     end
   end
-
 
   resources :courses do
     resources :favorite_courses, only: [:create, :destroy]

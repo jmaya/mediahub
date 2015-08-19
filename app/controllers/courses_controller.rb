@@ -17,11 +17,6 @@ class CoursesController < ApplicationController
     @tags = Course.tag_counts_on(:tags)
   end
 
-  # GET /courses/1
-  def show
-    @course_sorter = CourseSorter.new(@course)
-  end
-
   # GET /courses/new
   def new
     @course = Course.new
