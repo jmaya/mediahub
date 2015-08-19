@@ -64,29 +64,35 @@ namespace :courses do
     valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
     course_path = ENV['COURSE_PATH']
     url = ENV['URL']
-    # Create course with name
-    course_name = File.basename(course_path)
-    course_id = JSON.parse(RestClient.post("#{url}/api/v1/courses", course: { name:course_name }))['id']
-    Find.find("#{course_path}") do |f|
-      if valid_formats.include?(File.extname(f))
-        puts "Uploading #{f}"
-        sha1_to_verify = Digest::SHA1.file(f).hexdigest
-        begin
-          RestClient.get("#{url}/api/v1/file_attachments/exists.json?hash=#{sha1_to_verify}")
-        rescue RestClient::ResourceNotFound
-          puts "#{sha1_to_verify} #{f} noes not exists"
+    processed_folder = File.join(File.dirname(course_path), "processed")
+    FileUtils.mkdir_p processed_folder
+    Dir.glob(File.join(course_path, "*")).each do |course|
+      next if File.basename(course) == "processed"
+      course_name = File.basename(course)
+      # Create course with name
+      course_id = JSON.parse(RestClient.post("#{url}/api/v1/courses", course: { name:course_name }))['id']
+      Find.find("#{course_path}/#{course_name}") do |f|
+        if valid_formats.include?(File.extname(f))
           puts "Uploading #{f}"
-          resource = RestClient::Resource.new(
-            "#{url}/api/v1/file_attachments",
-            timeout: 100000,
-            open_timeout:100000 
-          )
-          resource.post  file_attachment: { 
-            course_id: course_id,
-            file: File.new(f, 'rb')
-          } 
+          sha1_to_verify = Digest::SHA1.file(f).hexdigest
+          begin
+            RestClient.get("#{url}/api/v1/file_attachments/exists.json?hash=#{sha1_to_verify}")
+          rescue RestClient::ResourceNotFound
+            puts "#{sha1_to_verify} #{f} noes not exists"
+            puts "Uploading #{f}"
+            resource = RestClient::Resource.new(
+              "#{url}/api/v1/file_attachments",
+              timeout: 100000,
+              open_timeout:100000 
+            )
+            resource.post  file_attachment: { 
+              course_id: course_id,
+              file: File.new(f, 'rb')
+            } 
+          end
         end
       end
+      FileUtils.move course, processed_folder
     end
   end
 end
