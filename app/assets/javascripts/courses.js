@@ -19,4 +19,17 @@
     source: tags.ttAdapter()
   });
 
+  // var video = $('video');
+  videojs('example_video_1', {
+    plugins: {
+      speed: [
+        { text: '1배속', rate: 1, selected: true },
+        { text: '2배속', rate: 2 },
+        { text: '4배속', rate: 4 },
+        { text: '8배속', rate: 8 }
+      ]
+    }
+  });
+
+
 })()

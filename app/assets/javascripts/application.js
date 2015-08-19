@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require typeahead
 //= require video
+//= require video-speed
 //= require_tree .
 
