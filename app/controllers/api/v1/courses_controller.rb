@@ -3,14 +3,8 @@ module Api
     class CoursesController < ApplicationController
       # POST /courses
       def create
-        @course = Course.new(course_params)
-        if @course.save
-          render json: @course
-        else
-          render json: {
-            error: 'Course Not created'
-          }.to_json, status: :not_found
-        end
+        @course = Course.find_or_create_by(name:course_params[:name])
+        render json: @course
       end
 
       private
