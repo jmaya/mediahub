@@ -2,6 +2,7 @@ require 'find'
 require 'company_parser'
 require 'digest/sha1'
 require 'rest-client'
+require 'json'
 
 namespace :courses do
   desc "Match Company"
@@ -39,7 +40,6 @@ namespace :courses do
 
   desc "Import Directory of CBT's"
   task :import => :environment do
-
     valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
     Dir.glob("#{ENV['COURSES_PATH']}/*").collect do |p|
       p if File.directory? p
@@ -56,18 +56,20 @@ namespace :courses do
 
   end
 
-  desc "Remote import of Courses COURSE_PATH COURSE_ID URL"
+  desc "Remote import of Courses COURSE_PATH URL"
   task :remote_import do
     # Example 
     # bundle exec rake courses:remote_import COURSE_PATH="/Users/jmaya/Downloads/CBT/Advanced\ Social\ Features\ in\ Ruby\
     #  on\ Rails\ \[Sality]/2\ -\ Uploading\ and\ Resizing\ Images" COURSE_ID=37 URL=http://localhost:3000
     valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
     course_path = ENV['COURSE_PATH']
-    course_id = ENV['COURSE_ID']
     url = ENV['URL']
-
-    Dir.glob("#{course_path}/*").collect do |f|
+    # Create course with name
+    course_name = File.basename(course_path)
+    course_id = JSON.parse(RestClient.post("#{url}/api/v1/courses", course: { name:course_name }))['id']
+    Find.find("#{course_path}") do |f|
       if valid_formats.include?(File.extname(f))
+        puts "Uploading #{f}"
         sha1_to_verify = Digest::SHA1.file(f).hexdigest
         begin
           RestClient.get("#{url}/api/v1/file_attachments/exists.json?hash=#{sha1_to_verify}")
