@@ -3,7 +3,7 @@
 <%= render 'form' %>
 
 <ul id="file-attachments-list" class="list-group">
-  <% @course.file_attachments.order("position ASC").each do |f| %>
+  <% @course.file_attachments.order("position").each do |f| %>
     <li id="file_attachment_<%=f.id %>" class="ui-state-default list-group-item">
     <span class="glyphicon glyphicon-facetime-video"></span> <%= base_name(f.file.url) %> <%= link_to "Remove", course_file_attachment_path(@course,f), method: :delete, data: { confirm: 'Are you Sure?' }  %>
     </li>
