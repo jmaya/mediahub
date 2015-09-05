@@ -58,9 +58,6 @@ namespace :courses do
 
   desc "Remote import of Courses COURSE_PATH URL"
   task :remote_import do
-    # Example 
-    # bundle exec rake courses:remote_import COURSE_PATH="/Users/jmaya/Downloads/CBT/Advanced\ Social\ Features\ in\ Ruby\
-    #  on\ Rails\ \[Sality]/2\ -\ Uploading\ and\ Resizing\ Images" COURSE_ID=37 URL=http://localhost:3000
     valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
     course_path = ENV['COURSE_PATH']
     url = ENV['URL']

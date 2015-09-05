@@ -11,7 +11,5 @@ class Ability
         cannot :read, :all
       end
     end
-
-
   end
 end

@@ -25,7 +25,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :favorites
-  has_many :favorite_courses,through: :favorites, source: :favorited, source_type: 'Course'
-
-  has_many :favorite_file_attachments,through: :favorites, source: :favorited, source_type: 'FileAttachment'
+  has_many :favorite_courses,
+           through: :favorites,
+           source: :favorited, source_type: 'Course'
+  has_many :favorite_file_attachments,
+           through: :favorites,
+           source: :favorited, source_type: 'FileAttachment'
 end

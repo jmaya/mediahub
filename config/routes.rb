@@ -3,20 +3,20 @@ Rails.application.routes.draw do
   devise_for :users
 
   require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin?  } do
+  authenticate :user, ->(u) { u.admin?  } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'courses#index'
 
   resources :books
-  resources :tags, only:[:index, :destroy]
+  resources :tags, only: [:index, :destroy]
   resources :profiles, only: [:index, :show]
 
-  namespace :api do
+  namespace :api, constraints: { format: 'json' }, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :tags, only:[:index]
-      resources :courses, only:[:create]
+      resources :tags, only: [:index]
+      resources :courses, only: [:create, :index]
       resources :file_attachments do
         collection do
           get :exists

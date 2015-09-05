@@ -1,6 +1,8 @@
 module Api
   module V1
     class FileAttachmentsController < ApplicationController
+      # before_action :authenticate_user!, only: [:sort]
+
       def create
         @file_attachment = FileAttachment.new(file_attachment_params)
         if @file_attachment.save
@@ -25,7 +27,8 @@ module Api
 
       def sort
         params[:file_attachment].each_with_index do |file_attachment_id, index|
-          FileAttachment.find(file_attachment_id).insert_at(index)
+          file_attachment = FileAttachment.find(file_attachment_id)
+          file_attachment.insert_at index
         end
         render json: { status: 'Ok'}
       end

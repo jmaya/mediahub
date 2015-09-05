@@ -46,3 +46,16 @@
 
 
 <%= link_to 'New Course', new_course_path, class:'btn btn-default' %>
+
+<% content_for :javascript do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      $.ajax({
+        url:"/api/v1/courses",
+        success: function(data){
+          console.log(data);
+        }
+      })
+    }); 
+  </script>
+<% end %>
