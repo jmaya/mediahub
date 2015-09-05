@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.2"
 
-gem "airbrake"
+gem "rails", "4.2.3"
 gem 'jquery-ui-rails'
 gem "coffee-rails", "~> 4.1.0"
 gem "email_validator"
@@ -17,7 +17,6 @@ gem "pg"
 gem "puma"
 gem 'sidekiq'
 # gem "rack-timeout"
-gem "rails", "4.2.1"
 gem "recipient_interceptor"
 gem "refills"
 gem "sass"
