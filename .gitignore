@@ -26,3 +26,5 @@ capybara-*.html
 /public/uploads/*
 .idea/
 .vagrant
+.env
+dump.rdb
