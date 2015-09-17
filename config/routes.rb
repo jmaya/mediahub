@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
+    member do
+      get :file_archive
+    end
     resources :favorite_courses, only: [:create, :destroy]
     resources :file_attachments, only: :destroy do
       resource :favorite_file_attachments, only: [:create, :destroy]

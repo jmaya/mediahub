@@ -74,8 +74,12 @@ class CoursesController < ApplicationController
     render :index
   end
 
-  private
+  def file_archive
+    CourseArchiverJob.perform_later params[:id]
+    redirect_to @course, notice: 'Course Archive is being generated.'
+  end
 
+  private
 
   def prepare_job temp_file,course
     temp_folder = File.expand_path(Rails.root.to_s) + "/tmp"
