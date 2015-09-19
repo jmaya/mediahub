@@ -52,4 +52,14 @@ module ApplicationHelper
       name.gsub!(/[^0-9A-Za-z.\-]/, '_')
     end
   end
+
+  def archive_link_for(course)
+    course_archive_file_name = course.id.to_s + '-' + sanitize_filename(course.name) + '.tar.gz'
+    course_archive_file_name_full_path = File.join(ENV['COURSE_ARCHIVE_DIRECTORY'], 'courses', course_archive_file_name)
+    if File.exists? course_archive_file_name_full_path
+      link_to "Download Course Archive", File.join("/", "uploads", 'courses', course_archive_file_name)
+    else
+      link_to 'Generate File', file_archive_course_path(course)
+    end
+  end
 end

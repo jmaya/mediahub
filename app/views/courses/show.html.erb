@@ -3,6 +3,7 @@
 </div>
 <div>
     <small><%= @course.file_attachments_count %> videos</small>
+      <%= archive_link_for(@course)%>
 </div>
 <% if can? :show, @course %>
 <div id="favorite_course">
