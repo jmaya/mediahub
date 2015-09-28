@@ -28,3 +28,4 @@ capybara-*.html
 .vagrant
 .env
 dump.rdb
+spec/fixtures/test.mp4

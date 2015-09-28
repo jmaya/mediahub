@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.2.2"
+ruby "2.2.3"
 
-gem "rails", "4.2.3"
+gem "rails", "4.2.4"
 gem 'jquery-ui-rails'
 gem "coffee-rails", "~> 4.1.0"
 gem "email_validator"
