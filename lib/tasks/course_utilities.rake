@@ -80,12 +80,12 @@ namespace :courses do
             resource = RestClient::Resource.new(
               "#{url}/api/v1/file_attachments",
               timeout: 100000,
-              open_timeout:100000 
+              open_timeout:100000
             )
-            resource.post  file_attachment: { 
+            resource.post  file_attachment: {
               course_id: course_id,
               file: File.new(f, 'rb')
-            } 
+            }
           end
         end
       end
