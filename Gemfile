@@ -16,6 +16,7 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem 'sidekiq'
+gem 'redis-namespace'
 # gem "rack-timeout"
 gem "recipient_interceptor"
 gem "refills"
@@ -58,7 +59,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "byebug"
   gem "factory_girl_rails"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails", "~> 3.4.0"
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'faker'
