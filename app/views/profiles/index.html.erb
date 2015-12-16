@@ -1,6 +1,9 @@
 <h1>User Profiles</h1>
-<ul>
+<ul class="list-group">
   <% @users.each do |user| %>
-    <li> <%= link_to user.email, profile_path(user)  %> </li>
-<% end %>
+  <li class="list-group-item">
+    <span class="badge"><%= user.favorite_courses.size%></span>
+   <%= link_to user.email, profile_path(user)  %>
+  </li>
+  <% end %>
 </ul>
