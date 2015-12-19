@@ -92,4 +92,25 @@ namespace :courses do
       FileUtils.move course, processed_folder
     end
   end
+
+  desc "local import of Courses COURSE_PATH URL"
+  task :local_import => :environment do
+    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
+    course_path = ENV['COURSE_PATH']
+    Dir.glob(File.join(course_path, "*")).each do |course|
+      course_name = File.basename(course)
+      course_id = Course.find_or_create_by( name: course_name).id
+      Find.find("#{course_path}/#{course_name}") do |f|
+        if valid_formats.include?(File.extname(f))
+          puts "Uploading #{f}"
+          sha1_to_verify = Digest::SHA1.file(f).hexdigest
+          unless FileAttachment.where(sha_1_hash: sha1_to_verify).first
+            puts "#{sha1_to_verify} #{f} noes not exists"
+            puts "Scheduling File #{f}"
+            FileAttachmentJob.perform_later course_id, f
+          end
+        end
+      end
+    end
+  end
 end
