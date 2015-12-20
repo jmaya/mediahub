@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def base_name(full_path)
-    full_path.split("\/")[-1]
+    full_path.split("\/")[-1].gsub(/\..{3}$/, '')
   end
 
   def bootstrap_class_for flash_type

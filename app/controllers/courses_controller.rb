@@ -4,13 +4,12 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :set_tags, only: [:index, :search]
 
-  check_authorization
-  load_and_authorize_resource
+  load_and_authorize_resource :except => :search
 
-  rescue_from CanCan::AccessDenied do |exception|
-    render text: "You are not authorized"
-  end
-
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   render text: "You are not authorized"
+  # end
+  #
   # GET /courses
   def index
     @courses = Course.order("updated_at DESC").page(params[:page])
