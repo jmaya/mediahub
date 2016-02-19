@@ -1,0 +1,31 @@
+db:
+  volumes:
+    - ./data:/var/lib/postgresql/data
+
+redis:
+  volumes:
+    - ./data-redis:/data
+    - ./redis_tmp:/tmp
+
+app:
+  image: jmaya/mediahub_app
+  command: bundle exec foreman run web
+  volumes:
+    - /mnt/MediaHub:/myapp/public/uploads
+    - ./log:/myapp/log
+    - ./tmp:/myapp/tmp
+    - ./rails_tmp:/tmp
+  environment:
+    - PORT=3000
+    - VIRTUAL_HOST=mediahub.lasamaria.com
+    - DB_POOL=25
+    - PUMA_WORKERS=5
+    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/uploads
+  links:
+    - db
+    - redis
+
+sidekiq:
+  environment:
+    - DB_POOL=25
+    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/uploads

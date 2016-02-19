@@ -4,6 +4,8 @@ ruby "2.3.0"
 
 gem 'rails', '~> 4.2', '>= 4.2.5.1'
 gem 'jquery-ui-rails'
+gem 'rails_12factor', group: :production
+
 gem "coffee-rails", "~> 4.1.0"
 gem "email_validator"
 gem "flutie"

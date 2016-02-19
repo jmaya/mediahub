@@ -1,33 +1,22 @@
-db:
-  image: postgres
-  ports:
-    - "5432"
-  volumes:
-    - ./data:/var/lib/postgresql/data
-redis:
-  image: redis
-  ports:
-    - "6379"
-
 app:
   #image: jmaya/mediahub_app
   build: .
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  volumes:
-    # - /mnt/MediaHub:/myapp/public/uploads
-     - ./public/uploads:/myapp/public/uploads
-     - ./tmp:/myapp/tmp
-    #- ./:/myapp
-     - ./log:/myapp/log
-  ports:
-    - "3000"
+  command: bundle exec foreman run web
+  # volumes:
+  #   # - /mnt/MediaHub:/myapp/public/uploads
+  #    - ./public/uploads:/myapp/public/uploads
+  #    - ./tmp:/myapp/tmp
+  #    - ./log:/myapp/log
+  environment:
+    - PORT=3000
+    - VIRTUAL_HOST=mediahub.lasamaria.com
   links:
     - db
     - redis
 
 sidekiq:
-  #build: .
-  image: mediahub_app
+  build: .
+  # image: jmaya/mediahub_app
   command: bundle exec sidekiq
   environment:
     - REDIS_URL=redis://redis:6379
@@ -38,12 +27,27 @@ sidekiq:
     - redis
 
 web:
-  image: nginx
+  image: jwilder/nginx-proxy
   ports:
-    - "8080:8080"
-  volumes:
-    - ./config/container/myapp.conf:/etc/nginx/conf.d/myapp.conf
+    - "8080:80"
+  # volumes:
+  #   - ./config/container/myapp.conf:/etc/nginx/conf.d/myapp.conf
   volumes_from:
     - app
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
   links:
     - app
+
+db:
+  image: postgres
+  ports:
+    - "5432"
+  # volumes:
+  #   - ./data:/var/lib/postgresql/data
+
+redis:
+  image: redis
+  ports:
+    - "6379"
+
