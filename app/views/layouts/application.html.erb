@@ -31,6 +31,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li><%= link_to "Tracks", tracks_path %></li>
             <li><%= link_to "Profiles", profiles_path %></li>
             <li class="<%= active_chooser(params) %>"><%= link_to "Courses", courses_path %></li>
             <li><a href="#">Books</a></li>

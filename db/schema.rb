@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819190009) do
+ActiveRecord::Schema.define(version: 20160221153804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,23 @@ ActiveRecord::Schema.define(version: 20150819190009) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "track_courses", force: :cascade do |t|
+    t.integer  "track_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "track_courses", ["course_id"], name: "index_track_courses_on_course_id", using: :btree
+  add_index "track_courses", ["track_id"], name: "index_track_courses_on_track_id", using: :btree
+
+  create_table "tracks", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "category"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -97,4 +114,6 @@ ActiveRecord::Schema.define(version: 20150819190009) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "favorites", "users"
+  add_foreign_key "track_courses", "courses"
+  add_foreign_key "track_courses", "tracks"
 end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   root 'courses#index'
 
   resources :books
+  resources :tracks, only: [:index, :show]
+  resources :track_courses, only: [:index, :show]
   resources :tags, only: [:index, :destroy]
   resources :profiles, only: [:index, :show]
 

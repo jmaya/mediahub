@@ -1,0 +1,15 @@
+<h1>Tracks</h1>
+
+<% @tracks.group_by(&:category).each do |category, tracks| %>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><%= category %></div>
+  <!-- List group -->
+  <ul class="list-group">
+    <% tracks.each do |track| %>
+      <li class="list-group-item"><%= link_to track.name, track %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% end %>
