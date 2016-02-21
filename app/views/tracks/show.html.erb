@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><%= @track.name %></div>
+  <!-- List group -->
+  <ul class="list-group">
+    <% @track_courses.each do |track_course| %>
+      <li class="list-group-item"><%= link_to track_course.course.name, course_path(track_course.course)%></li>
+    <% end %>
+  </ul>
+</div>
+
