@@ -14,16 +14,14 @@ HTTP_ERRORS = [
   Errno::EINVAL,
   Net::HTTPBadResponse,
   Net::HTTPHeaderSyntaxError,
-  Net::ProtocolError,
-  Timeout::Error
+  Net::ProtocolError
 ]
 
 SMTP_SERVER_ERRORS = [
   IOError,
   Net::SMTPAuthenticationError,
   Net::SMTPServerBusy,
-  Net::SMTPUnknownError,
-  TimeoutError
+  Net::SMTPUnknownError
 ]
 
 SMTP_CLIENT_ERRORS = [
