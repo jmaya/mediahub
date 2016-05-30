@@ -10,14 +10,17 @@ $(document).ready(function(){
         }]
       }
     })
-    console.log(video_sources);
     var player = videojs('video');
-    player.playlist(video_sources);
+    player.on('playlistchange', function() {
+      console.log(player.playlist());
+    });
 
-    // Play through the playlist automatically.
+    player.playlist(video_sources);
     player.playlist.autoadvance(0);
+    // Play through the playlist automatically.
 
   }
+
   $.ajax(window.location.href + ".json", {
     success: function(data) {
       setup_player(data);
