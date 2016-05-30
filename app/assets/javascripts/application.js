@@ -17,5 +17,6 @@
 //= require typeahead
 //= require video
 //= require video-speed
+//= require videojs-playlist
 //= require_tree .
 

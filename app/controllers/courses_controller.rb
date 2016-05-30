@@ -3,6 +3,8 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :set_tags, only: [:index, :search]
+  respond_to :html, :json
+
 
   load_and_authorize_resource :except => :search
 
@@ -19,6 +21,10 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+  end
+
+  def show
+    respond_with(@course)
   end
 
   # GET /courses/1/edit

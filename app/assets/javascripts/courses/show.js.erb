@@ -1,0 +1,26 @@
+$(document).ready(function(){
+
+  function setup_player(data) {
+    var video_sources = $.map(data.file_attachments, function(video_raw){
+      content_type = 'mp4';
+      return {
+        sources: [{
+        src: window.location.protocol + "//" + window.location.host + "/" + video_raw.file.url,
+        type: "video/" + content_type
+        }]
+      }
+    })
+    console.log(video_sources);
+    var player = videojs('video');
+    player.playlist(video_sources);
+
+    // Play through the playlist automatically.
+    player.playlist.autoadvance(0);
+
+  }
+  $.ajax(window.location.href + ".json", {
+    success: function(data) {
+      setup_player(data);
+    }
+  }).done;
+});

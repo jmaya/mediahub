@@ -1,8 +1,10 @@
 development: &default
   username: postgres
+  password: postgres
   adapter: postgresql
   database: rails_development
   host: 192.168.99.100
+  port: 5432
   encoding: utf8
   min_messages: warning
   pool: 2

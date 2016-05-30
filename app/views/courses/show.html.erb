@@ -13,47 +13,62 @@
   <%- else -%>
     <%= link_to 'Remove from favorites', course_favorite_course_path(@course,1), method: :delete %>
     <%- end -%>
-</div>
+  </div>
 
-    <% if can? :edit, Course %>
-        <%= link_to 'Edit', edit_course_path(@course) %> |
-    <% end %>
-    <%= link_to 'Back', courses_path %>
-
-<% @course.file_attachments.order(:position).each do |f| %>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#file-attachment-<%= f.id %>" aria-expanded="false" aria-controls="file-attachment-<%= f.id %>">
-          </span> <%= base_name(f.file.url) %>
-
-  <%- unless current_user.favorite_file_attachments.exists?(id: f.id) -%>
-    <%= link_to 'Add to favorites', course_file_attachment_favorite_file_attachments_path(@course,f), method: :post %>
-  <%- else -%>
-    <%= link_to 'Remove from favorites', course_file_attachment_favorite_file_attachments_path(@course.id, f.id), method: :delete %>
-    <%- end -%>
-    <span class="badge pull-right"><%= show_file_size(f.file_size) %></span>
-        </a>
-      </h4>
+  <% if can? :edit, Course %>
+    <%= link_to 'Edit', edit_course_path(@course) %> |
+  <% end %>
+  <%= link_to 'Back', courses_path %>
+  <div>
+    <video id="video" class="video-js vjs-default-skin"
+      controls preload="auto" width="640" height="264"
+      data-setup='{"preload":"none", "autoplay":false, "playbackRates": [0.5, 1, 1.5, 2]  }'>
+      </video>
     </div>
-    <div id="file-attachment-<%= f.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        <video id="example_video_1" class="video-js vjs-default-skin"
-          controls preload="auto" width="640" height="264"
-          data-setup='{"preload":"none", "autoplay":false, "playbackRates": [0.5, 1, 1.5, 2]  }'>
-          <source src="<%= f.file.url %>" type='<%= video_content_type_for(f.content_type) %>' />
-            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-          </video>
+    <ul class="list-group">
+      <% @course.file_attachments.order(:position).each do |f| %>
+        <li class="list-group-item" >
+          <span class="label label-default label-pill pull-xs-right"><%= show_file_size(f.file_size) %></span>
+          <%= base_name(f.file.url) %>
+        </li>
+      <% end %>
+    </ul>
+    <!--
+    <% @course.file_attachments.order(:position).each do |f| %>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#file-attachment-<%= f.id %>" aria-expanded="false" aria-controls="file-attachment-<%= f.id %>">
+              </span> <%= base_name(f.file.url) %>
+
+            <%- unless current_user.favorite_file_attachments.exists?(id: f.id) -%>
+              <%= link_to 'Add to favorites', course_file_attachment_favorite_file_attachments_path(@course,f), method: :post %>
+            <%- else -%>
+              <%= link_to 'Remove from favorites', course_file_attachment_favorite_file_attachments_path(@course.id, f.id), method: :delete %>
+            <%- end -%>
+            <span class="badge pull-right"><%= show_file_size(f.file_size) %></span>
+          </a>
+        </h4>
+      </div>
+      <div id="file-attachment-<%= f.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+          <video id="example_video_1" class="video-js vjs-default-skin"
+            controls preload="auto" width="640" height="264"
+            data-setup='{"preload":"none", "autoplay":false, "playbackRates": [0.5, 1, 1.5, 2]  }'>
+            <source src="<%= f.file.url %>" type='<%= video_content_type_for(f.content_type) %>' />
+              <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+  -->
 
-<% if can? :edit, Course %>
-  <%= link_to 'Edit', edit_course_path(@course) %> |
-<% end %>
-<%= link_to 'Back', courses_path %>
+  <% if can? :edit, Course %>
+    <%= link_to 'Edit', edit_course_path(@course) %> |
+  <% end %>
+  <%= link_to 'Back', courses_path %>
 <% end %>
 
