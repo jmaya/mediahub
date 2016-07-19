@@ -30,7 +30,7 @@ class FileAttachment < ActiveRecord::Base
   acts_as_list scope: :course
 
   before_validation do |fa|
-    self.file_basename = File.basename(fa.file.path) unless fa.file.nil?
+    self.file_basename = File.basename(fa.file.path) unless fa.file.path.nil?
   end
 
   private

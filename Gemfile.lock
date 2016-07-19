@@ -71,9 +71,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.7.1)
-      capybara (>= 2.3.0, < 2.6.0)
-      json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -416,7 +413,6 @@ DEPENDENCIES
   bundler-audit
   byebug
   cancancan
-  capybara-webkit (>= 1.2.0)
   carrierwave
   coffee-rails (~> 4.1.0)
   cucumber-rails
@@ -470,5 +466,8 @@ DEPENDENCIES
   web-console
   webmock
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.11.2
+   1.12.5

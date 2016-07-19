@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class FileUploader < CarrierWave::Uploader::Base
-  SUPPORTED_FILETYPES = %w(mov flv mp4 wmv)
+  SUPPORTED_FILETYPES = %w(mov flv mp4 wmv avi)
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
