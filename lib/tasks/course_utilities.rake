@@ -58,7 +58,7 @@ namespace :courses do
 
   desc "Remote import of Courses COURSE_PATH URL"
   task :remote_import do
-    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
+    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4 .avi .AVI]
     course_path = ENV['COURSE_PATH']
     url = ENV['URL']
     processed_folder = File.join(File.dirname(course_path), "processed")
