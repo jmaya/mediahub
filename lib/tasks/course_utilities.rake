@@ -95,7 +95,7 @@ namespace :courses do
 
   desc "local import of Courses COURSE_PATH URL"
   task :local_import => :environment do
-    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4]
+    valid_formats = %w[.mov .MOV .flv .FLV .mp4 .MP4 .ogg .OGG .avi .AVI]
     course_path = ENV['COURSE_PATH']
     Dir.glob(File.join(course_path, "*")).each do |course|
       course_name = File.basename(course)
