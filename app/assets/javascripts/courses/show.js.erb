@@ -10,14 +10,33 @@ $(document).ready(function(){
         }]
       }
     })
-    var player = videojs('video');
+    var player = videojs('video',{
+      "controls": true,
+      "preload":"none",
+      "autoplay":false,
+      "playbackRates": [0.5, 1, 1.5, 2]
+    });
     player.on('playlistchange', function() {
       console.log(player.playlist());
     });
 
+
     player.playlist(video_sources);
     player.playlist.autoadvance(0);
     // Play through the playlist automatically.
+
+    // Add the index to the the play button
+    $('.play-link').each(function(index,data){
+      $(data).on('click', function(event){
+        event.preventDefault();
+        // player.playlist.src(video_sources[index]);
+        player.src(player.playlist()[index].sources[0].src)
+        player.playbackRate(2.0);
+        player.play();
+
+      });
+    })
+
 
   }
 
