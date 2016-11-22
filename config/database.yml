@@ -1,6 +1,6 @@
 development: &default
-  username: postgres
-  password: postgres
+  username: mediahub
+  password: mediahub
   adapter: postgresql
   database: rails_development
   host: localhost
