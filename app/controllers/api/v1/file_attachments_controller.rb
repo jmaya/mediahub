@@ -9,7 +9,7 @@ module Api
           render json: @file_attachment
         else
           render json: {
-            error: 'File Attachment Not created'
+            error: "File Attachment Not created #{@file_attachment.errors.inspect}"
           }.to_json, status: :not_found
         end
       end

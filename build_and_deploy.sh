@@ -1,7 +1,9 @@
 #!/bin/bash
 
-docker build -t jmaya/mediahub_app .
-docker save jmaya/mediahub_app:latest | ssh -C jmaya@$1 docker load
+# docker build -t jmaya/mediahub_app .
+docker build -t home.lasamaria.com:30000/mediahub_app .
+docker push home.lasamaria.com:30000/mediahub_app
+#docker save jmaya/mediahub_app:latest | ssh -C jmaya@$1 docker load
 
 #on docker host run
 # docker-compose up -d
