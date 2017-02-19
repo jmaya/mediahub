@@ -43,6 +43,9 @@ db:
   image: postgres
   ports:
     - "5432:5432"
+  environment:
+    - POSTGRES_USER=mediahub
+    - POSTGRES_PASSWORD=mediahub
   # volumes:
   #   - ./data:/var/lib/postgresql/data
 
