@@ -19,7 +19,6 @@ gem "pg"
 gem "puma"
 gem 'sidekiq'
 gem 'redis-namespace'
-# gem "rack-timeout"
 gem "recipient_interceptor"
 gem "refills"
 gem "sass"
@@ -68,7 +67,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem "capybara-webkit"
   gem 'shoulda-matchers', '~> 3.1.1', require: false
   gem "database_cleaner"
   gem "formulaic"
