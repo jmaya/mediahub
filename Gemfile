@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.1"
+ruby "2.4.1"
 
 gem 'rails', '~> 4.2', '>= 4.2.5.1'
 gem 'jquery-ui-rails'
@@ -40,7 +40,7 @@ gem 'rails_admin'
 gem 'sinatra', :require => nil
 gem 'rest-client'
 gem 'acts_as_list', '~> 0.7.2'
-
+gem 'tzinfo-data'
 
 group :development do
   gem "spring"
