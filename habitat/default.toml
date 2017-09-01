@@ -1,0 +1,25 @@
+# Use this file to templatize your application's native configuration files.
+# See the docs at https://www.habitat.sh/docs/create-packages-configure/.
+# You can safely delete this file if you don't need it.
+
+secret_key_base = "35a2efb7eb37b72c40841033f092d5b6e704041c45fa5644677b9f6c587c511b37ef4af57af19b9842df908698b48f00e568591863fbc6aea85e15bfab713f4c"
+
+[app]
+port = 3000
+asset_host = "mediahub.lasamaria.com"
+host = "mediahub.lasamaria.com"
+smtp_address = "localhost"
+smtp_domain = "lasamaria.com"
+smtp_password= "Password1"
+smtp_user = "user"
+course_archive_directory = "public/system/uploads"
+rails_env = "production"
+rack_env = "production"
+
+[db]
+user = "mediahub"
+password = "mediahub"
+name  = "mediahub_development"
+host = "db"
+
+
