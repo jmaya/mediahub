@@ -1,0 +1,22 @@
+secret_key_base = "35a2efb7eb37b72c40841033f092d5b6e704041c45fa5644677b9f6c587c511b37ef4af57af19b9842df908698b48f00e568591863fbc6aea85e15bfab713f4c"
+secret_token =  "35a2efb7eb37b72c40841033f092d5b6e704041c45fa5644677b9f6c587c511b37ef4af57af19b9842df908698b48f00e568591863fbc6aea85e15bfab713f4c"
+
+[app]
+asset_host = "mediahub.lasamaria.com"
+course_archive_directory = "public/system/uploads"
+host = "mediahub.lasamaria.com"
+port = 3000
+smtp_address = "localhost"
+smtp_domain = "lasamaria.com"
+smtp_password = "Password1"
+smtp_user = "user"
+rack_env = "production"
+rails_env = "production"
+
+[db]
+lang = "en_US.UTF-8"
+name = "mediahub_development"
+user = "admin"
+password = "admin"
+rack_env = "production"
+rails_env = "production"
