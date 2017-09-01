@@ -13,6 +13,7 @@ app:
     - redis
   ports:
     - 3000:3000
+    - 9631:9631
   volumes:
     - ./user.toml:/hab/svc/mediahub/user.toml
 
