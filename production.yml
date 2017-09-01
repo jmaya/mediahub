@@ -11,7 +11,7 @@ app:
   image: jmaya/mediahub_app
   command: bundle exec foreman run web
   volumes:
-    - /mnt/MediaHub:/myapp/public/uploads
+    - /mnt/MediaHub:/myapp/public/system/uploads
     - ./log:/myapp/log
     - ./tmp:/myapp/tmp
     - ./rails_tmp:/tmp
@@ -20,7 +20,7 @@ app:
     - VIRTUAL_HOST=mediahub.lasamaria.com
     - DB_POOL=25
     - PUMA_WORKERS=5
-    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/uploads
+    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/system/uploads
   links:
     - db
     - redis
@@ -28,4 +28,4 @@ app:
 sidekiq:
   environment:
     - DB_POOL=25
-    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/uploads
+    - COURSE_ARCHIVE_DIRECTORY=/myapp/public/system/uploads
