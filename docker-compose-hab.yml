@@ -1,41 +1,40 @@
-app:
-  image: jmaya/mediahub
-  command: --peer db --peer redis --bind database:postgresql.default --bind redis:redis.default --strategy at-once --channel unstable
-  # volumes:
-  #   # - /mnt/MediaHub:/myapp/public/uploads
-  #    - ./public/uploads:/myapp/public/uploads
-  #    - ./tmp:/myapp/tmp
-  #    - ./log:/myapp/log
-  environment:
-    - PORT=3000
-  links:
-    - db
-    - redis
-  ports:
-    - 3000:3000
-    - 9631:9631
-  volumes:
-    - ./user.toml:/hab/svc/mediahub/user.toml
+version: "2"
+services:
+  app:
+    image: "jmaya/mediahub"
+    command: "--peer db --peer redis --bind database:postgresql.default --bind redis:redis.default --strategy at-once --channel unstable"
+    # volumes:
+    #   # - /mnt/MediaHub:/myapp/public/uploads
+    #    - ./public/uploads:/myapp/public/uploads
+    #    - ./tmp:/myapp/tmp
+    #    - ./log:/myapp/log
+    # environment:
+    #   - PORT=3000
+    depends_on:
+      - "db"
+      - "redis"
+    links:
+      - "db"
+      - "redis"
+    ports:
+      - "3000:3000"
+      - "9631:9631"
+    volumes:
+      - ./user.toml:/hab/svc/mediahub/user.toml
 
-# sidekiq:
-#   image: jmaya/mediahub
-#   command: nucleis-worker --peer db --peer redis --bind database:postgresql.default --bind redis:redis.default --strategy at-once --channel unstable
-#   environment:
-#     - REDIS_URL=redis://redis:6379
-#   volumes_from:
-#     - app
-#   volumes:
-#     - ./user.toml:/hab/svc/mediahub/user.toml
-#   links:
-#     - db
-#     - redis
+  db:
+    image: "core/postgresql"
+    ports:
+      - "5432:5432"
+    volumes:
+      - data_postgresql:/hab/svc/postgresql/data
 
-db:
-  image: core/postgresql
-  ports:
-    - "5432:5432"
-
-redis:
-  image: core/redis
-  ports:
-    - "6379"
+  redis:
+    image: "core/redis"
+    ports:
+      - "6379"
+    volumes:
+      - data_redis:/hab/svc/redis/data
+volumes:
+  data_redis:
+  data_postgresql:
