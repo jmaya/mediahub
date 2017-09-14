@@ -9,7 +9,11 @@ module Api
       end
       # POST /courses
       def create
-        @course = Course.find_or_create_by(name:course_params[:name])
+        begin
+          @course = Course.find_or_create_by(name:course_params[:name])
+        rescue │ActiveRecord::RecordNotUnique
+          @course = Course.find_by(name: course_params[:name])
+        end
         render json: @course
       end
 
