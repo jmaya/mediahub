@@ -3,13 +3,14 @@ services:
   app:
     image: "jmaya/mediahub"
     command: "--peer db --peer redis --bind database:postgresql.default --bind redis:redis.default --strategy at-once --channel unstable"
-    # volumes:
-    #   # - /mnt/MediaHub:/myapp/public/uploads
-    #    - ./public/uploads:/myapp/public/uploads
-    #    - ./tmp:/myapp/tmp
-    #    - ./log:/myapp/log
-    # environment:
-    #   - PORT=3000
+    volumes:
+      # - /mnt/MediaHub:/myapp/public/uploads
+       - ./public/system:/hab/svc/mediahub/var/public/system
+       # - ./tmp:/myapp/tmp
+       # - ./log:/myapp/log
+    environment:
+      - PORT=3000
+      - REDIS_URL=redis://redis:6379
     depends_on:
       - "db"
       - "redis"
@@ -35,6 +36,7 @@ services:
       - "6379"
     volumes:
       - data_redis:/hab/svc/redis/data
+      - ./user.toml:/hab/svc/redis/user.toml
 volumes:
   data_redis:
   data_postgresql:

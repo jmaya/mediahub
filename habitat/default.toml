@@ -15,6 +15,8 @@ smtp_user = "user"
 course_archive_directory = "public/system/uploads"
 rails_env = "production"
 rack_env = "production"
+redis_port_6379_tcp_addr = "localhost"
+redis_port_6379_tcp_port = "6379"
 
 [db]
 user = "mediahub"

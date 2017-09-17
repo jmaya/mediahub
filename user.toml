@@ -12,6 +12,10 @@ smtp_password = "Password1"
 smtp_user = "user"
 rack_env = "production"
 rails_env = "production"
+redis_port_6379_tcp_addr = "redis"
+redis_port_6379_tcp_port = "6379"
+
+protected-mode = "no"
 
 [db]
 lang = "en_US.UTF-8"
