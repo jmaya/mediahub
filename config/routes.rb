@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :courses do
     member do
       get :file_archive
+      get :sort
     end
     resources :favorite_courses, only: [:create, :destroy]
     resources :file_attachments, only: :destroy do

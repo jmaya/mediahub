@@ -1,5 +1,4 @@
 <h1>Editing Course</h1>
-
 <%= render 'form' %>
 
 <ul id="file-attachments-list" class="list-group">
@@ -10,6 +9,7 @@
 
   <% end %>
 </ul>
+<p><%= link_to "Sort", sort_course_path(@course) %></p>
 
 <%= link_to 'Show', @course %> |
 <%= link_to 'Back', courses_path %>

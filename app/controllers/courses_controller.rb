@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :sorter]
   before_action :set_tags, only: [:index, :search]
   respond_to :html, :json
 
@@ -82,6 +82,13 @@ class CoursesController < ApplicationController
   def file_archive
     CourseArchiverJob.perform_later params[:id]
     redirect_to @course, notice: 'Course Archive is being generated.'
+  end
+
+  def sort
+     CourseSorter.new(@course).sort.each_with_index do |d,i|
+       d.update_attribute(:position, i + 1)
+     end
+     redirect_to :back
   end
 
   private
