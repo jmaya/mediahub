@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :track_courses, only: [:index, :show]
   resources :tags, only: [:index, :destroy]
   resources :profiles, only: [:index, :show]
+  resources :health_check, only: [:index]
 
   namespace :api, constraints: { format: 'json' }, defaults: { format: 'json' } do
     namespace :v1 do
