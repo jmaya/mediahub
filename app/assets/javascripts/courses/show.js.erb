@@ -40,9 +40,11 @@ $(document).ready(function(){
 
   }
 
-  $.ajax(window.location.href + ".json", {
-    success: function(data) {
-      setup_player(data);
-    }
-  }).done;
+  if (window.location.pathname != "/" ) {
+    $.ajax(window.location.href + ".json", {
+      success: function(data) {
+        setup_player(data);
+      }
+    }).done;
+  }
 });
