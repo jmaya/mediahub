@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913224252) do
+ActiveRecord::Schema.define(version: 20171010155059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,17 @@ ActiveRecord::Schema.define(version: 20170913224252) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "video_player_trackers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "file_attachment_id"
+    t.integer  "left_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "video_player_trackers", ["file_attachment_id"], name: "index_video_player_trackers_on_file_attachment_id", using: :btree
+  add_index "video_player_trackers", ["user_id"], name: "index_video_player_trackers_on_user_id", using: :btree
 
   add_foreign_key "favorites", "users"
   add_foreign_key "track_courses", "courses"
