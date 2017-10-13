@@ -27,6 +27,7 @@ Rails.application.routes.draw do
           post :sort
         end
       end
+      resources :video_player_tracker, only: [:index]
     end
   end
 
