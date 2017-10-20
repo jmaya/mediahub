@@ -18,7 +18,7 @@ pkg_deps=(core/curl)
 
 pkg_version=0.0.1
 
-pkg_binds_optional=( [database]="port" [redis]="port")
+pkg_binds=( [database]="port" [redis]="port")
 
 
 declare -A scaffolding_env
