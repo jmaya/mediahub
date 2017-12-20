@@ -2,6 +2,8 @@
 
 ## What is MediaHub
 
+build status https://travis-ci.org/jmaya/mediahub.svg?branch=master
+
 ## Contribuiting
 
 After you have cloned this repo, run this setup script to set up your machine
