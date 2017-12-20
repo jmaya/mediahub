@@ -29,5 +29,6 @@ capybara-*.html
 .env
 dump.rdb
 spec/fixtures/test.mp4
+config/database.yml
 results/
 user.toml

@@ -1,0 +1,27 @@
+development: &default
+  username: travis
+  password: travis
+  adapter: postgresql
+  database: travis
+  host: localhost
+  port: 5432
+  encoding: utf8
+  min_messages: warning
+  pool: 2
+  timeout: 5000
+
+test: &test
+  <<: *default
+  database: rails_test
+
+production:
+  <<: *default
+  database: rails_production
+  username: postgres
+  host: <%= ENV["DB_PORT_5432_TCP_ADDR"] %>
+  port: <%= ENV["DB_PORT_5432_TCP_PORT"] %>
+  pool: <%= ENV['DB_POOL'] %>
+
+
+cucumber:
+  <<: *test
