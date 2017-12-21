@@ -4,7 +4,6 @@
 
 [![Build Status](https://travis-ci.org/jmaya/mediahub.svg?branch=master)](https://travis-ci.org/jmaya/mediahub)
 
-
 ## Contribuiting
 
 After you have cloned this repo, run this setup script to set up your machine
