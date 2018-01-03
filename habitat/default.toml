@@ -19,9 +19,6 @@ redis_port_6379_tcp_addr = "localhost"
 redis_port_6379_tcp_port = "6379"
 
 [db]
-user = "mediahub"
-password = "mediahub"
-name  = "mediahub_development"
-host = "db"
-
-
+user = "admin"
+password = "admin"
+name  = "mediahub_production"
