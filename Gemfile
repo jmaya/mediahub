@@ -14,7 +14,7 @@ gem "i18n-tasks"
 gem "jquery-rails"
 gem "jbuilder"
 gem "normalize-rails", "~> 3.0.0"
-gem "pg"
+gem "pg", '~> 0.21.0'
 gem "puma"
 gem 'sidekiq'
 gem 'redis-namespace'
