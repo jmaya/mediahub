@@ -40,6 +40,7 @@ gem 'sinatra', :require => nil
 gem 'rest-client'
 gem 'acts_as_list', '~> 0.7.2'
 gem 'tzinfo-data'
+gem 'rack-protection', '>= 2.0.1'
 
 group :development do
   gem "spring"
