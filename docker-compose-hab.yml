@@ -19,16 +19,17 @@ services:
       - "redis"
     ports:
       - "3000:3000"
-      - "9631:9631"
+     # - "9631:9631"
     volumes:
       - ./user.toml:/hab/svc/mediahub/user.toml
 
   db:
     image: "core/postgresql"
-    ports:
-      - "5432:5432"
-    volumes:
-      - data_postgresql:/hab/svc/postgresql/data
+    command: --peer redis --topology leader
+#    ports:
+     # - "5432:5432"
+#    volumes:
+#      - data_postgresql:/hab/svc/postgresql/data
 
   redis:
     image: "core/redis"
