@@ -1,6 +1,6 @@
 app:
-  #image: jmaya/mediahub_app
-  build: .
+  image: jmaya/mediahub_app
+  # build: .
   command: bundle exec foreman run web
   # volumes:
   #   # - /mnt/MediaHub:/myapp/public/uploads
@@ -15,8 +15,8 @@ app:
     - redis
 
 sidekiq:
-  build: .
-  # image: jmaya/mediahub_app
+  # build: .
+  image: jmaya/mediahub_app
   command: bundle exec sidekiq
   environment:
     - REDIS_URL=redis://redis:6379
