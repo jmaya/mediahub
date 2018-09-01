@@ -8,6 +8,9 @@
 <% if can? :show, @course %>
 <div id="favorite_course">
 
+<div>
+<a href="not_valid.html" id="change_to_1_speed">Normal Speed</a>
+</div>
   <%- unless current_user.favorite_courses.exists?(id: @course.id) -%>
     <%= link_to 'Add to favorites', course_favorite_courses_path(course_id: @course), method: :post %>
   <%- else -%>
@@ -40,3 +43,4 @@
   <% end %>
   <%= link_to 'Back', courses_path %>
 <% end %>
+

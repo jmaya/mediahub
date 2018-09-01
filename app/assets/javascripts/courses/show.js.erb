@@ -36,15 +36,31 @@ $(document).ready(function(){
 
       });
     })
+  }
 
-
+  function set_playspeed_on_links(num) {
+     var player = videojs('video',{});
+       $('.play-link').each(function(index,data){
+      $(data).on('click', function(event){
+        event.preventDefault();
+        // player.playlist.src(video_sources[index]);
+        player.src(player.playlist()[index].sources[0].src)
+        player.playbackRate(parseFloat(num));
+      });
+    }) 
   }
 
   if (window.location.pathname != "/" ) {
     $.ajax(window.location.href + ".json", {
       success: function(data) {
         setup_player(data);
+         $("#change_to_1_speed").on("click", function(event){
+            console.log("Clicked");
+            set_playspeed_on_links(1)
+            event.preventDefault();
+          });
       }
     }).done;
   }
 });
+
